@@ -284,6 +284,13 @@ body {
 .sidebar .description {
   font-size: 14px;
 }
+.sidebar .email > a {
+  font-size: 14px;
+  color: rgba(170,170,170,0.667);
+}
+.sidebar .email > a:hover {
+  color: rgba(204,204,204,0.8);
+}
 .sidebar .avatar {
   width: 140px;
 }
