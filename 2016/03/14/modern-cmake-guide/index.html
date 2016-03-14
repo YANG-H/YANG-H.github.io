@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    现代 CMake 指南
+  
+</title>
+
+<meta name="description" content="找到一篇不错的 CMake 指南，提供了一种清晰的 C++ 工程构建模式，特翻译以作参考。原文在此。
+CMake 是一个可用于构建 C++ 项目的强大工具：快捷、适用性好、灵活度高。然而由于很灵活，对于很多直接写 Makefile 的人来说，CMake 的特别优势并不是很容易就能发现的。如果你以前经常直接在 CXX_FLAGS 里定义编译选项，那么你用 CMake 时也很可能会这么做，这样的话 C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="现代 CMake 指南">
+<meta property="og:url" content="http://howyoung.info/2016/03/14/modern-cmake-guide/index.html">
+<meta property="og:site_name" content="How Young?">
+<meta property="og:description" content="找到一篇不错的 CMake 指南，提供了一种清晰的 C++ 工程构建模式，特翻译以作参考。原文在此。
+CMake 是一个可用于构建 C++ 项目的强大工具：快捷、适用性好、灵活度高。然而由于很灵活，对于很多直接写 Makefile 的人来说，CMake 的特别优势并不是很容易就能发现的。如果你以前经常直接在 CXX_FLAGS 里定义编译选项，那么你用 CMake 时也很可能会这么做，这样的话 C">
+<meta property="og:updated_time" content="2016-03-14T16:35:39.984Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="现代 CMake 指南">
+<meta name="twitter:description" content="找到一篇不错的 CMake 指南，提供了一种清晰的 C++ 工程构建模式，特翻译以作参考。原文在此。
+CMake 是一个可用于构建 C++ 项目的强大工具：快捷、适用性好、灵活度高。然而由于很灵活，对于很多直接写 Makefile 的人来说，CMake 的特别优势并不是很容易就能发现的。如果你以前经常直接在 CXX_FLAGS 里定义编译选项，那么你用 CMake 时也很可能会这么做，这样的话 C">
+
+
+  <link rel="alternative" href="/atom.xml" title="How Young?" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">How Young?</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">How Young?</a></h1>
+    
+      <p class="subtitle">
+        Always Young Enough to Pursue My Dream :)
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">A Researcher</div>
+        
+        
+          <div class="author">Hao Yang (杨昊)</div>
+        
+        
+          <div class="email">
+             <a href="http://scr.im/howyoung">y...@gmail.com</a>
+          </div>
+        
+        
+          <div class="email">
+             <a href="https://www.linkedin.com/in/hao-yang-b1110532">LinkedIn</a>
+          </div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/loong_circ_small.png"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">随感</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blender/">Blender</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CVPR-2016/">CVPR 2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photoshop/">Photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wheels/">Wheels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习-Rust/">学习 Rust</a><span class="tag-list-count">15</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">3</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-modern-cmake-guide" class="article article-type-post">
+  
+    <h1 class="article-header">
+      现代 CMake 指南
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Mar 14 2016
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/tech/">技术</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CMake/">CMake</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>找到一篇不错的 CMake 指南，提供了一种清晰的 C++ 工程构建模式，特翻译以作参考。<a href="http://rix0r.nl/blog/2015/08/13/cmake-guide/" target="_blank" rel="external">原文在此</a>。</p>
+<p>CMake 是一个可用于构建 C++ 项目的强大工具：快捷、适用性好、灵活度高。然而由于很灵活，对于很多直接写 Makefile 的人来说，CMake 的特别优势并不是很容易就能发现的。如果你以前经常直接在 <code>CXX_FLAGS</code> 里定义编译选项，那么你用 CMake 时也很可能会这么做，这样的话 CMake 就发挥不了它应有的作用。</p>
+<a id="more"></a>
+<p>最近我（译注：指作者）发现我需要一个黄金指南来管理我的 CMake 项目。网上现在有很多所谓的 CMake 教程，但它们大都只讲 <code>add_executable</code>, <code>add_include_directories</code> 之类的东西。仅仅根据这些教程进行 C++ 项目管理，可迁移性是打了折扣的，构建的库在重用时也并不是很方便。</p>
+<p>因此，我希望能用 CMake 来更好的进行依赖性管理。我希望更方便地进行库的引用，但不想操心像<em>包含路径</em>（include diretories）、<em>链接命令</em>（linker command lines）之类的杂事。因此本文可用作一个阶段性的参考。</p>
+<p>本文大多数内容摘自 Daniel Pfeifer 的讲稿以及 CMake 文档。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>对于需要构建的项目我有几点需求：</p>
+<ul>
+<li>我希望做的仅仅是定义模块（modules）以及模块之间的依赖关系。CMake 应能自动分析出他们的依赖顺序然后正确设置所有相关的包含路径和链接路径。譬如，如果我现在的项目并没有使用 Boost，但我依赖的一个项目用了 Boost，而我如果还要额外考虑这种关系，那可真的谈不上方便。</li>
+<li>当我定义模块时，我希望能自动完成如下任务：<ul>
+<li>支持直接用 CPack 打包</li>
+<li>能正确安装</li>
+<li>在同一个 CMake 构建下，只使用 <code>target_link_libraries</code> 就能完成链接</li>
+<li>若需要从外部 CMake 文件导入依赖，只使用导入命令和 <code>target_link_libraries</code> 就能完成链接  </li>
+</ul>
+</li>
+<li>CMakeLists 文件不能太多，否则不好管理。最好每个组件一个 CMakeLists 文件，未必每个路径都要有一个。</li>
+<li>一个库的公开头文件应该是在一个命名路径下的（如 <code>#include &lt;mylib/header.h&gt;</code>），这样才逻辑清晰。</li>
+</ul>
+<p>为了达成上述目标，我们需要：</p>
+<ul>
+<li>在源代码路径下对每一个模块创建一个路径，相应的每个模块创建一个 CMakeLists 文件。源代码根路径下使用一个 CMakeLists 文件来整合所有模块，但这个顶级的 CMakeLists 文件必须是 <strong>非必要的</strong>（OPTIONAL），这个文件仅仅用来引入所有的模块/依赖。</li>
+<li>对于一个库，要区分出来公有的头文件和私有的头文件。把公有的头文件都放在 <code>include/mylib</code> 路径下面，这样的话我们想写 <code>#include &lt;mylib/header.h&gt;</code> 时只需要把那个 <code>include</code> 路径加入就可以了。</li>
+<li>我们将使用<strong>导入目标</strong>（imported targets）来定义每一个没有定义 CMake 文件的库。这意味着我们不用通过 <code>find_package</code> 寻找到库之后再手工指定每一个需要包含的路径和库的名字了。</li>
+</ul>
+<h2 id="路径安排"><a href="#路径安排" class="headerlink" title="路径安排"></a>路径安排</h2><p>我们在源文件路径外进行构建，我们不妨把源文件都放在 <code>src</code> 路径下，旁边的 <code>build</code> 路径用于构建。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">+---build/           &lt;-- out-of-source 构建</span><br><span class="line">+---src/</span><br><span class="line">    +---CMakeLists.txt</span><br><span class="line">    +---liblib/</span><br><span class="line">    |   +---CMakeLists.txt</span><br><span class="line">    |   +---include/</span><br><span class="line">    |   |   +---liblib/</span><br><span class="line">    |   |       +---lib.h</span><br><span class="line">    |   +---src/</span><br><span class="line">    |   |   +---lib.cpp</span><br><span class="line">    |   |   +---frob.cpp</span><br><span class="line">    |   +---test/</span><br><span class="line">    |       +---testlib.cpp</span><br><span class="line">    +---app/</span><br><span class="line">    |   +---CMakeLists.txt</span><br><span class="line">    |   +---src/</span><br><span class="line">    |   |   +---app.cpp</span><br><span class="line">    |   |   +---quux.cpp</span><br><span class="line">    |   +---test/</span><br><span class="line">    |       +---testapp.cpp</span><br><span class="line">    +---libs/</span><br><span class="line">        +---... 可构建的第三方库</span><br><span class="line">        +---extlib/</span><br><span class="line">            +---CMakeLists.txt</span><br><span class="line">                ...</span><br></pre></td></tr></table></figure>
+<h2 id="顶层-CMakeLists-txt"><a href="#顶层-CMakeLists-txt" class="headerlink" title="顶层 CMakeLists.txt"></a>顶层 <code>CMakeLists.txt</code></h2><p>顶层 CMakeLists 文件用于把所有子路径下的 CMake 项目加进来，此外也用于把所有的外部依赖库转化为导入目标（imported targets）。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 版本至少 2.8 但越新越好</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.2</span> FATAL_ERROR)</span><br><span class="line"><span class="keyword">project</span>(myproject VERSION <span class="number">0.1</span> LANGUAGES CXX)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把 Boost 库变成一个导入目标</span></span><br><span class="line"><span class="keyword">find_package</span>(Boost REQUIRED)</span><br><span class="line"><span class="keyword">add_library</span>(boost INTERFACE IMPORTED)</span><br><span class="line"><span class="keyword">set_property</span>(TARGET boost PROPERTY</span><br><span class="line">    INTERFACE_INCLUDE_DIRECTORIES <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三方库</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(libs/extlib EXCLUDE_FROM_ALL)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 我们自己的库本身就是导入目标</span></span><br><span class="line"><span class="keyword">enable_testing</span>()</span><br><span class="line"><span class="keyword">add_subdirectory</span>(liblib)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(app)</span><br></pre></td></tr></table></figure>
+<h2 id="定义库"><a href="#定义库" class="headerlink" title="定义库"></a>定义库</h2><p>这个文件最长，因为很多定义需要灵活性。<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义库</span></span><br><span class="line"><span class="keyword">project</span>(liblib VERSION <span class="number">0.1</span> LANGUAGES CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(lib</span><br><span class="line">    src/lib.cpp</span><br><span class="line">    src/frob.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义本库的头文件</span></span><br><span class="line">target_include_directories(lib PUBLIC</span><br><span class="line">    $&lt;BUILD_INTERFACE:<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>/<span class="keyword">include</span>&gt;</span><br><span class="line">    $&lt;INSTALL_INTERFACE:<span class="keyword">include</span>&gt;</span><br><span class="line">    PRIVATE src)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译器方面的需求</span></span><br><span class="line">target_compile_features(lib</span><br><span class="line">    PUBLIC cxx_auto_type</span><br><span class="line">    PRIVATE cxx_variadic_templates)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里依赖一个顶层文件中定义了的库</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(lib</span><br><span class="line">    boost)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当我们执行 'make install' 时，这些语句用于定义安装目标的路径结构</span></span><br><span class="line"><span class="keyword">install</span>(TARGETS lib</span><br><span class="line">    ARCHIVE  DESTINATION lib</span><br><span class="line">    LIBRARY  DESTINATION lib</span><br><span class="line">    RUNTIME  DESTINATION bin)  <span class="comment"># This is for Windows</span></span><br><span class="line"><span class="keyword">install</span>(DIRECTORY <span class="keyword">include</span>/ DESTINATION <span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这条语句保证此库能在构建路径中被别的库导入</span></span><br><span class="line"><span class="keyword">export</span>(TARGETS lib FILE MyLibraryConfig.cmake)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个库都要有的单元测试代码</span></span><br><span class="line"><span class="keyword">add_executable</span>(testlib</span><br><span class="line">    test/testlib.cpp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(testlib</span><br><span class="line">    lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_test</span>(testlib testlib)</span><br></pre></td></tr></table></figure></p>
+<h2 id="定义可执行程序"><a href="#定义可执行程序" class="headerlink" title="定义可执行程序"></a>定义可执行程序</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_executable</span>(app</span><br><span class="line">    src/app.cpp</span><br><span class="line">    src/quux.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本程序依赖的库</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(app</span><br><span class="line">    lib)</span><br></pre></td></tr></table></figure>
+<h2 id="用于构建的命令"><a href="#用于构建的命令" class="headerlink" title="用于构建的命令"></a>用于构建的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd build</span><br><span class="line"></span><br><span class="line"># Building</span><br><span class="line">cmake ../src &amp;&amp; make</span><br><span class="line"></span><br><span class="line"># Testing</span><br><span class="line">make test</span><br><span class="line">ctest --output-on-failure</span><br><span class="line"></span><br><span class="line"># Building to a different root directory</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/opt/mypackage ../src</span><br></pre></td></tr></table></figure>
+<h2 id="导入外部库"><a href="#导入外部库" class="headerlink" title="导入外部库"></a>导入外部库</h2><p>如果某一个你导入的库不是直接用 CMake 构建的，你就需要在你的顶层 CMake 文件或者某一个引入的文件中为这个库定义一个导入目标。譬如如果你需要导入一个预编译好的 Boost 库，你需要这么做：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost REQUIRED iostreams)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(boost INTERFACE IMPORTED)</span><br><span class="line"><span class="keyword">set_property</span>(TARGET boost PROPERTY INTERFACE_INCLUDE_DIRECTORIES <span class="variable">$&#123;Boost_INCLUDE_DIRS&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(boost-iostreams SHARED IMPORTED)</span><br><span class="line"><span class="keyword">set_property</span>(TARGET boost-iostreams PROPERTY INTERFACE_INCLUDE_DIRECTORIES <span class="variable">$&#123;Boost_INCLUDE_DIRS&#125;</span>)</span><br><span class="line"><span class="keyword">set_property</span>(TARGET boost-iostreams PROPERTY IMPORTED_LOCATION <span class="variable">$&#123;Boost_IOSTREAMS_LIBRARY&#125;</span>)</span><br></pre></td></tr></table></figure></p>
+<p>而如果你需要导入的这个库是用 CMake 遵循着本教程构建的，那么你要做的就简单很多：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(MyLibrary)</span><br></pre></td></tr></table></figure></p>
+<p>构建方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake ../src -DMyLibrary_DIR=/path/to/mylibrary/build</span><br></pre></td></tr></table></figure></p>
+<p>有个不好的地方：这里 CMake 不会自动重新构建，因此如果你改了这些外部库的源代码，你只能手工重新构建他们。</p>
+<h2 id="与代码生成器进行整合"><a href="#与代码生成器进行整合" class="headerlink" title="与代码生成器进行整合"></a>与代码生成器进行整合</h2><p>目标：</p>
+<ul>
+<li>我们希望在需要的时候能重新运行生成工具</li>
+<li>文件生成到 build 目录中，而非源代码目录<br>因此我们可以这么做：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 譬如我们的一个文件 file.output 需要使用命令 tool 基于 file.gen 文件来生成</span></span><br><span class="line"><span class="keyword">add_custom_command</span>(</span><br><span class="line">    OUTPUT file.output</span><br><span class="line">    COMMAND tool --options <span class="string">"$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/file.gen"</span></span><br><span class="line">    MAIN_DEPENDENCY file.gen</span><br><span class="line">    DEPENDS tool)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把生成的 file.output 加入项目</span></span><br><span class="line"><span class="keyword">add_library</span>(target</span><br><span class="line">    ...</span><br><span class="line">    file.output)</span><br><span class="line"></span><br><span class="line">target_include_directories(target</span><br><span class="line">    ...</span><br><span class="line">    PRIVATE ... <span class="variable">$&#123;CMAKE_CURRENT_BINARY_DIR&#125;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'howyoung'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+          <div class="main-footer">
+  
+    © 2016 How Young? - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/YANG-H/hexo-theme-chan" target="_blank">Chan</a> <a href="https://github.com/denjones/hexo-theme-chan.git" target="_blank">[Original]</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/scripts/main.js"></script>
+
+
+<!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+</body>
+</html>

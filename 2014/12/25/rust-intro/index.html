@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    Rust - 简介
+  
+</title>
+
+<meta name="description" content="在这两年兴起的新语言中，Rust、Go 和 Swift 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。
+Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。
+Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手拓逃展避技现能实了！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust - 简介">
+<meta property="og:url" content="http://howyoung.info/2014/12/25/rust-intro/index.html">
+<meta property="og:site_name" content="How Young?">
+<meta property="og:description" content="在这两年兴起的新语言中，Rust、Go 和 Swift 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。
+Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。
+Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手拓逃展避技现能实了！">
+<meta property="og:updated_time" content="2016-03-12T16:38:06.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rust - 简介">
+<meta name="twitter:description" content="在这两年兴起的新语言中，Rust、Go 和 Swift 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。
+Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。
+Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手拓逃展避技现能实了！">
+
+
+  <link rel="alternative" href="/atom.xml" title="How Young?" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">How Young?</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">How Young?</a></h1>
+    
+      <p class="subtitle">
+        Always Young Enough to Pursue My Dream :)
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">A Researcher</div>
+        
+        
+          <div class="author">Hao Yang (杨昊)</div>
+        
+        
+          <div class="email">
+             <a href="http://scr.im/howyoung">y...@gmail.com</a>
+          </div>
+        
+        
+          <div class="email">
+             <a href="https://www.linkedin.com/in/hao-yang-b1110532">LinkedIn</a>
+          </div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/loong_circ_small.png"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">随感</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blender/">Blender</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CVPR-2016/">CVPR 2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photoshop/">Photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wheels/">Wheels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习-Rust/">学习 Rust</a><span class="tag-list-count">15</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">3</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-rust-intro" class="article article-type-post">
+  
+    <h1 class="article-header">
+      Rust - 简介
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Dec 25 2014
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/tech/">技术</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/">Rust</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习-Rust/">学习 Rust</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>在这两年兴起的新语言中，<a href="http://www.rust-lang.org/" target="_blank" rel="external">Rust</a>、<a href="https://golang.org/" target="_blank" rel="external">Go</a> 和 <a href="https://developer.apple.com/swift/" target="_blank" rel="external">Swift</a> 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。</p>
+<p>Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。</p>
+<p><del>Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手<strong>拓</strong><span style="color:darkgray;background-color:lightgray">逃</span><strong>展</strong><span style="color:darkgray;background-color:lightgray">避</span><strong>技</strong><span style="color:darkgray;background-color:lightgray">现</span><strong>能</strong><span style="color:darkgray;background-color:lightgray">实</span>了！</del></p>
+<a id="more"></a>
+<p>Rust 的安装方法就不讲了，官网有安装包可直接用，教程也比较详细。<br>我的计划是首先翻译官方指南 <a href="http://rustbyexample.com/index.html" target="_blank" rel="external">Rust by Example</a>（本想边学边写个小教程，但是稍微尝试便发现自己暂时不是原创的料;(），翻译完这个再考虑加些私货。</p>
+<p>已经有大神们完成了部分翻译工作，譬如 <a href="https://github.com/rustcc/rust-zh" target="_blank" rel="external">Rust 中文开源社区</a>。我自己的翻译可能会借鉴其中一些，先表示感谢~</p>
+<p>下面是 <a href="http://rustbyexample.com/index.html" target="_blank" rel="external">Rust by Example</a> 的介绍部分。</p>
+<h1 id="Rust-示例教程"><a href="#Rust-示例教程" class="headerlink" title="Rust 示例教程"></a>Rust 示例教程</h1><p>Rust 是一个现代的系统级别编程语言，注重安全与速度。它使用无垃圾回收的内存安全机制来达到这两个目标。</p>
+<p>Rust 示例教程包含多个示例，通过这些示例来介绍 Rust 中涉及到的各种概念以及标准库的用法。你可以从<a href="https://github.com/rust-lang/rust-by-example" target="_blank" rel="external">这里</a> check out 官方教程的源代码。</p>
+<p>首先请确保你<a href="http://www.rust-lang.org/install.html" target="_blank" rel="external">已安装</a> Rust、而且手边有<a href="http://doc.rust-lang.org/std/" target="_blank" rel="external">文档</a>，现在让我们开始吧！</p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'howyoung'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+          <div class="main-footer">
+  
+    © 2016 How Young? - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/YANG-H/hexo-theme-chan" target="_blank">Chan</a> <a href="https://github.com/denjones/hexo-theme-chan.git" target="_blank">[Original]</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
