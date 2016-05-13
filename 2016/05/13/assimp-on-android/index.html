@@ -8,26 +8,20 @@
 
 <title>
   
-    Rust - 简介
+    Assimp 与 Android NDK 的坑
   
 </title>
 
-<meta name="description" content="在这两年兴起的新语言中，Rust、Go 和 Swift 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。
-Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。
-Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手拓逃展避技现能实了！">
+<meta name="description" content="前一段时间我们需要在 Android NDK 中调用 Assimp 来读取模型文件。在迁移 Assimp 的过程中遇到一些相关的问题，这里且做一下总结。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rust - 简介">
-<meta property="og:url" content="http://howyoung.info/2014/12/25/rust-intro/index.html">
+<meta property="og:title" content="Assimp 与 Android NDK 的坑">
+<meta property="og:url" content="http://howyoung.info/2016/05/13/assimp-on-android/index.html">
 <meta property="og:site_name" content="How Young?">
-<meta property="og:description" content="在这两年兴起的新语言中，Rust、Go 和 Swift 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。
-Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。
-Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手拓逃展避技现能实了！">
-<meta property="og:updated_time" content="2016-03-12T16:38:06.321Z">
+<meta property="og:description" content="前一段时间我们需要在 Android NDK 中调用 Assimp 来读取模型文件。在迁移 Assimp 的过程中遇到一些相关的问题，这里且做一下总结。">
+<meta property="og:updated_time" content="2016-05-13T16:52:32.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rust - 简介">
-<meta name="twitter:description" content="在这两年兴起的新语言中，Rust、Go 和 Swift 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。
-Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。
-Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手拓逃展避技现能实了！">
+<meta name="twitter:title" content="Assimp 与 Android NDK 的坑">
+<meta name="twitter:description" content="前一段时间我们需要在 Android NDK 中调用 Assimp 来读取模型文件。在迁移 Assimp 的过程中遇到一些相关的问题，这里且做一下总结。">
 
 
   <link rel="alternative" href="/atom.xml" title="How Young?" type="application/atom+xml">
@@ -104,21 +98,21 @@ Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完�
             
               <li class="category-list-container">
                 <a href="javascript:;">Category</a>
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">随感</a><span class="category-list-count">1</span></li></ul>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/essay/">随感</a><span class="category-list-count">1</span></li></ul>
               </li>
             
           
             
               <li class="tag-list-container">
                 <a href="javascript:;">Tag</a>
-                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blender/">Blender</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CVPR-2016/">CVPR 2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photoshop/">Photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wheels/">Wheels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习-Rust/">学习 Rust</a><span class="tag-list-count">15</span></li></ul>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-NDK/">Android NDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assimp/">Assimp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blender/">Blender</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CVPR-2016/">CVPR 2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photoshop/">Photoshop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wheels/">Wheels</a><span class="tag-list-count">1</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">3</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">1</span></li></ul>
               </li>
             
           
@@ -132,17 +126,17 @@ Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完�
       
         <div style="max-width: 1000px">
       
-          <article id="post-rust-intro" class="article article-type-post">
+          <article id="post-assimp-on-android" class="article article-type-post">
   
     <h1 class="article-header">
-      Rust - 简介
+      Assimp 与 Android NDK 的坑
     </h1>
   
   
 
   <div class="article-info">
     <span class="article-date">
-  Dec 25 2014
+  May 13 2016
 </span>
 
     
@@ -153,22 +147,17 @@ Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完�
 
     
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/">Rust</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习-Rust/">学习 Rust</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-NDK/">Android NDK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Assimp/">Assimp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CMake/">CMake</a></li></ul>
 	</span>
 
 
   </div>
   <div class="article-entry">
-    <p>在这两年兴起的新语言中，<a href="http://www.rust-lang.org/" target="_blank" rel="external">Rust</a>、<a href="https://golang.org/" target="_blank" rel="external">Go</a> 和 <a href="https://developer.apple.com/swift/" target="_blank" rel="external">Swift</a> 也许是最有名的三个，Rust 不算最新的，但就发布而言绝对是最晚的。</p>
-<p>Rust 的设计目标是成为一种系统级别的语言，速度快，安全，无数据竞争，大有替代 C++ 的气势（鼓掌！！！）。</p>
-<p><del>Rust 现在处于接近发布 1.0 版本的状态，虽然部分功能尚未完成，但整体语言性质已大体定型，我觉得是时候下手<strong>拓</strong><span style="color:darkgray;background-color:lightgray">逃</span><strong>展</strong><span style="color:darkgray;background-color:lightgray">避</span><strong>技</strong><span style="color:darkgray;background-color:lightgray">现</span><strong>能</strong><span style="color:darkgray;background-color:lightgray">实</span>了！</del></p>
+    <p>前一段时间我们需要在 Android NDK 中调用 Assimp 来读取模型文件。在迁移 Assimp 的过程中遇到一些相关的问题，这里且做一下总结。</p>
 <a id="more"></a>
-<p>Rust 的安装方法就不讲了，官网有安装包可直接用，教程也比较详细。<br>我的计划是首先翻译官方指南 <a href="http://rustbyexample.com/index.html" target="_blank" rel="external">Rust by Example</a>（本想边学边写个小教程，但是稍微尝试便发现自己暂时不是原创的料;(），翻译完这个再考虑加些私货。</p>
-<p>已经有大神们完成了部分翻译工作，譬如 <a href="https://github.com/rustcc/rust-zh" target="_blank" rel="external">Rust 中文开源社区</a>。我自己的翻译可能会借鉴其中一些，先表示感谢~</p>
-<p>下面是 <a href="http://rustbyexample.com/index.html" target="_blank" rel="external">Rust by Example</a> 的介绍部分。</p>
-<h1 id="Rust-示例教程"><a href="#Rust-示例教程" class="headerlink" title="Rust 示例教程"></a>Rust 示例教程</h1><p>Rust 是一个现代的系统级别编程语言，注重安全与速度。它使用无垃圾回收的内存安全机制来达到这两个目标。</p>
-<p>Rust 示例教程包含多个示例，通过这些示例来介绍 Rust 中涉及到的各种概念以及标准库的用法。你可以从<a href="https://github.com/rust-lang/rust-by-example" target="_blank" rel="external">这里</a> check out 官方教程的源代码。</p>
-<p>首先请确保你<a href="http://www.rust-lang.org/install.html" target="_blank" rel="external">已安装</a> Rust、而且手边有<a href="http://doc.rust-lang.org/std/" target="_blank" rel="external">文档</a>，现在让我们开始吧！</p>
+<p>首先是把 Assimp 库编译到 Android 以供 NDK 调用的问题。我以前没有接触过 Android 开发，特别是在 Windows 上的 Android NDK 开发，交叉编译配置起来的确令人头疼。好在发现了一个神器 <a href="https://github.com/taka-no-me/android-cmake" target="_blank" rel="external">android-cmake</a>，只需要极简单的步骤便能把任意 CMake 项目编译到 Android 平台，而且灵活性也很高，省了我不少精力。</p>
+<p>第二个问题出现在读取三维模型的变换矩阵时。遇到的第一个坑是：读取完变换矩阵，然后打印输出时，logcat 总是输出固定乱码，看结果应该是读到了未初始化的内存数据。测试后发现，原来我们临时用来打印数字时调用的 std::stringstream 在转换 double 类型时总是会打印乱码，乖乖使用纯 C 函数譬如 snprintf 就没有这个问题了。</p>
+<p>之后的第二个坑是：虽然不打印乱码了，但读到的变换矩阵总与正确值存在偏差，譬如输入一个单位阵，其对角线上的值本是 1.0，但在 Assimp 读到之后却变成了1.5， 这使得显示出的模型总是产生诡异的形变。经过多方面的测试，我们发现这个问题只在 arm7 架构上存在，而转用 arm8 或者直接在 Windows 上测试 x86 都没有问题。目前来看这个坑应该是来自 Assimp 自己。</p>
 
   </div>
   <footer class="article-footer">
