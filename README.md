@@ -1,4 +1,4 @@
-# Page files for personal website
+# Page files
 
 Hao Yang
 
