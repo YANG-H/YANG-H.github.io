@@ -114,6 +114,7 @@ body {
 }
 .block > ul > li {
     margin: 10px 25px 10px -15px;
+    list-style-type: circle;
 }
 
 .block > .education {
