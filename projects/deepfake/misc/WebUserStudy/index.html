@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <title>换脸算法调研</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <div id="message-block" class="alert alert-success alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">完成！</h4>
+        <p>测试最后，点击按钮保存测试数据至txt文件。请将文件发送至 <u>haya@microsoft.com</u> 非常感谢！</p>
+    </div>
+    <div class="up text-right d-flex justify-content-around">
+        <div classs="d-flex flex-column justify-content-around">
+            <!-- <div style="margin-bottom:40px;padding:0.5cm 1cm 0.2cm 1cm">
+                <h1>Compare Face Swapping Methods</h1>
+            </div> -->
+            <div style="margin-bottom:30px;" class="text-left bg-white">
+                <!-- <p class="font-weight-bold lead">.</p> -->
+                <blockquote class="blockquote">
+                    <h3 class="mb-0" style="padding: 0.5em 0em 0em 0em">
+                        本测试将包含 60 个单元(Page)。每个单元将展示<br />
+                        一张 Source，一张 Target,以及 4 张不同换脸算法的生成结果
+                    </h3>
+                    <!-- <p class="mb-0" style="padding: 0.2cm 0cm 0cm 0cm">
+                        一个好的换脸结果需要达到如下目标：
+                        <ul>
+                            <li>生成的人脸必须<b>真实可信</b>。</li>
+                            <li>生成的人脸须能保持 Target 中人的姿势、表情、环境光照、背景等信息。</li>
+                            <li>生成的人脸须与 Source 中人脸身份一致。</li>
+                        </ul>
+                    </p> -->
+                    <ul class="list-group list-group-flush" style="margin:0.8em 0em">
+                        <li class="list-group-item text-right">一个好的换脸结果需要达到如下目标：
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center"><span
+                                class="badge badge-primary badge-pill">1</span><span>生成的人脸必须<mark>真实可信</mark></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center"><span
+                                class="badge badge-primary badge-pill">2</span>生成的人脸须能保持
+                            Target 中人的姿势、表情、环境光照、背景等信息</li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center"><span
+                                class="badge badge-primary badge-pill">3</span>生成的人脸须与 Source
+                            中人脸身份一致</li>
+                    </ul>
+                    <p class="mb-0" style="">
+                        请按照上述三点标准对这 4 个换脸结果通过<mark>鼠标拖动</mark>来进行排序</br>使得最左侧是你认为的最好的结果，<mark>由左到右质量依次递减</mark>
+                    </p>
+                    <p class="mb-0 blockquote-footer" style="padding: 0.2cm 0cm 0cm 0cm">
+                        ------- 测试最后，点击按钮保存测试数据至txt文件。
+                        请将文件发送至 <u>haya@microsoft.com</u>
+                        非常感谢！---------
+                    </p>
+                    <!-- <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite>
+                </footer> -->
+                </blockquote>
+            </div>
+            <div class="progress" style="height:50px;font-size:2.2em">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%">1/1</div>
+            </div>
+        </div>
+        <div>
+            <h2>Source</h2>
+            <img src="images/train_00000014.jpg" class="source shadow-lg p-3 mb-5 bg-white rounded" alt="...">
+        </div>
+        <div>
+            <h2>Target</h2>
+            <img src="images/train_00000014.jpg" class="target shadow-lg p-3 mb-5 bg-white rounded" alt="...">
+        </div>
+    </div>
+    <div class="bottom">
+        <ul id="sortable" class="customerlist d-flex justify-content-around" style='width:100%'>
+            <li class="customeritem"><img src="images/train_00000014.jpg" class="shadow p-3 mb-5 bg-white rounded"
+                    alt="...">
+            </li>
+        </ul>
+        <button type="button" class="nextpage btn btn-success btn-lg" style="float:right;margin-right: 5%">Next
+            Page</button>
+        <button type="button" class="prevpage btn btn-lg btn-primary" style="float: right;margin-right: 5%"
+            disabled>Previous Page</button>
+
+        <li class="customeritem" style="display: None;"><img src="images/train_00000024.jpg"
+                class="shadow p-3 mb-5 bg-white rounded" alt="...">
+        </li>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="meta_images.js"></script>
+</body>
+
+<script type="text/javascript">
+    var group_index = -1;
+    var num = 60;
+    $(function () {
+        // UI 
+        $("#sortable").sortable();
+        $("#message-block").hide()
+        $('.prevpage').prop('disabled', true);
+        meta_images = random_select(meta_images, num)
+
+        // data
+        $('.nextpage').click();
+        $('.progress-bar').attr('aria-valuemin', 1).attr('aria-valuemax', meta_images.length)
+    })
+
+    // save user input and go to next page
+    $('.nextpage').on('click', function () {
+        if (group_index != -1) {
+            save_current_state()
+        }
+        // all done
+        if (group_index == meta_images.length - 1) {
+            $("#message-block").fadeIn()
+            // get IP address
+            $.getJSON("https://jsonip.com?callback=?", function (data) {
+                exportRaw(data.ip + '.txt', JSON.stringify(meta_images));
+            });
+            return;
+        }
+
+        group_index++;
+
+        // change button style
+        if (group_index == meta_images.length - 1) {
+            $('.nextpage').text('Save Result').removeClass('btn-success').addClass('btn-warning')
+        }
+        else {
+            $('.nextpage').text('Next Page').removeClass('btn-warning').addClass('btn-success')
+        }
+        if (group_index > 0) {
+            $('.prevpage').prop('disabled', false);
+        }
+        ChangeUI(meta_images[group_index]);
+    })
+
+
+    $('.prevpage').on('click', function () {
+        save_current_state()
+        console.log(meta_images[group_index]);
+
+        group_index--;
+        $('.nextpage').text('Next Page').removeClass('btn-warning').addClass('btn-success')
+        if (group_index == 0) {
+            $('.prevpage').prop('disabled', true);
+        }
+        ChangeUI(meta_images[group_index]);
+    })
+
+    function ChangeUI(group_obj) {
+        $("#message-block").hide()
+        $('.progress-bar').text((group_index + 1) + '/' + meta_images.length)
+        $('.progress-bar').css('width', 100 * (group_index + 1) / meta_images.length + '%').attr('aria-valuenow', group_index + 1)
+        $('.source').attr('src', group_obj['source'])
+        $('.target').attr('src', group_obj['target'])
+        var url_list = group_obj['results']
+        $('.customerlist li').remove();
+        for (var url of url_list) {
+            $('.customerlist').append('<li class="customeritem"><img src=' + url + ' class="shadow p-3 mb-5 bg-white rounded" alt = "..." width="350px"></li >');
+        }
+        $("ul.customerlist").sortable();
+    }
+
+    function save_current_state() {
+        // save result 
+        var temp = {
+            "source": $(".source").attr('src'),
+            "target": $(".target").attr('src'),
+            "results": []
+        };
+        var t;
+        $('.customerlist .customeritem').each(function (index, element) {
+            t = $(this).children();
+            temp.results.push($(t[0]).attr('src'));
+        })
+        meta_images[group_index] = temp
+    }
+</script>
+
+
+</html>
