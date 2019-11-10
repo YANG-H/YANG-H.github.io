@@ -152,9 +152,12 @@
         if (group_index == meta_images.length - 1) {
             $("#message-block").fadeIn()
             // get IP address
-            $.getJSON("https://jsonip.com?callback=?", function (data) {
-                exportRaw(data.ip + '_id.txt', JSON.stringify(meta_images));
-            });
+            // $.getJSON("https://jsonip.com?callback=?", function (data) {
+            //     exportRaw(data.ip + '_id.txt', JSON.stringify(meta_images));
+            // });
+            let r = Math.random().toString(36).substr(2, 5);
+            console.log("random", r);
+            exportRaw(r + '_id.txt', JSON.stringify(meta_images));
             return;
         }
 
