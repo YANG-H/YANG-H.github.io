@@ -133,11 +133,19 @@ body {
     padding: 2px;
 }
 
-
 .footer {
     text-align: center;
     margin: 5px auto;
     font-size: 13px;
     color: #6F6F6F;
     min-height: 70px;
+}
+
+li.mail {
+    padding: 0px;
+}
+
+li.mail > img {
+    padding: 0px;
+    border-radius: 8px;
 }
