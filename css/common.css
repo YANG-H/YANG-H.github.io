@@ -113,16 +113,11 @@ body {
     width: 80%;
 }
 .block > ul > li {
-    margin: 10px 25px 10px -15px;
+    margin: 10px 25px 10px -20px;
     list-style-type: circle;
 }
 
 .block > ul > li:hover {
-    border: #4F4F4F;
-    border-radius: 2px;
-}
-
-.block > ul > li.important {
     list-style-type: disc;
 }
 
