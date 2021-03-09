@@ -1,0 +1,72 @@
+introduction:
+  - I joined the Visual Computing Group of Microsoft Research Asia in late 2017.
+  - Before that, I received both my B.S and PhD degrees from the School of Software, Tsinghua University.
+    My research interests include but are not limited to the understanding and synthesis of faces and 3D.
+
+publications:  
+  - authors: [Chulin Xie, Chuxin Wang, Bo Zhang, Hao Yang, Dong Chen, Fang Wen]
+    title: Style-based Point Generator with Adversarial Rendering for Point Cloud Completion
+    pub: Computer Vision and Pattern Recognition 2021
+    level: poster
+    link:
+      paper: https://arxiv.org/pdf/2103.02535.pdf
+      project: https://alphapav.github.io/SpareNet/
+  
+  - authors: [Dengpan Fu, Dongdong Chen, Jianmin Bao, Hao Yang, Lu Yuan, Lei Zhang, Houqiang Li, Dong Chen]
+    title: Unsupervised Pre-training for Person Re-identification
+    pub: Computer Vision and Pattern Recognition 2021
+    level: poster
+    link:
+      paper: https://arxiv.org/pdf/2012.03753.pdf
+  
+  - authors: [Lingzhi Li, Jianmin Bao, Hao Yang, Dong Chen, Fang Wen]
+    title: "FaceShifter: Towards High Fidelity And Occlusion Aware Face Swapping"
+    pub: Computer Vision and Pattern Recognition 2020
+    level: oral
+    link:
+      paper: https://arxiv.org/pdf/1912.13457.pdf
+
+  - authors: [Lingzhi Li, Jianmin Bao, Ting Zhang, Hao Yang, Dong Chen, Fang Wen, Baining Guo]
+    title: Face X-ray for More General Face Forgery Detection
+    pub: Computer Vision and Pattern Recognition 2020
+    level: oral
+    link:
+      paper: https://arxiv.org/pdf/1912.13458.pdf
+
+  - authors: [Jinpeng Lin, Hao Yang, Dong Chen, Ming Zeng, Fang Wen, Lu Yuan]
+    title: Face Parsing with RoI Tanh-warping
+    pub: Computer Vision and Pattern Recognition 2019
+    level: poster
+    link:
+      paper: https://arxiv.org/pdf/1906.01342.pdf
+      data: https://github.com/JPlin/Relabeled-HELEN-Dataset
+  
+  - authors: [Shuyang Gu, Jianmin Bao, Hao Yang, Dong Chen, Fang Wen, Lu Yuan]
+    title: Mask-Guided Portrait Editing with Conditional GANs
+    pub: Computer Vision and Pattern Recognition 2019
+    level: poster
+    link:
+      paper: https://arxiv.org/pdf/1905.10346.pdf
+  
+  - authors: [Hao Yang, Hui Zhang]
+    title: Automatic 3D Reconstruction of a Polyhedral Object from a Single Line Drawing Under Perspective Projection
+    pub: "Computers & Graphics 65 (2017): 45-50"
+    level: journal
+    link:
+      paper: https://doi.org/10.1016/j.cag.2017.04.003
+
+  - authors: [Hao Yang, Hui Zhang]
+    title: Efficient 3D Room Shape Recovery from a Single Panorama
+    pub: Computer Vision and Pattern Recognition 2016
+    level: oral
+    link:
+      paper: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Yang_Efficient_3D_Room_CVPR_2016_paper.pdf
+      project: http://cgcad.thss.tsinghua.edu.cn/yanghao/3droom/index.html
+
+  - authors: [Yunfeng Liang, Hao Yang, Hui Zhang]
+    title: A Per-pixel Noise Detection Approach for Example-Based Photometric Stereo
+    pub: "Computers & Graphics 46 (2015): 327-335"
+    level: journal
+    link:
+      paper: http://dl.acm.org/citation.cfm?id=2802437
+
